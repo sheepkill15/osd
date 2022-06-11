@@ -113,7 +113,7 @@ impl Overlay {
             osd.move_to_position();
             osd.window.show();
             osd.hide_timeout = Some(glib::timeout_add_local(
-                Duration::from_millis(10000),
+                Duration::from_millis(1000),
                 move || {
                     Overlay::cb_hide_timeout(Arc::clone(&osd_for_draw2));
                     glib::Continue(false)
