@@ -6,7 +6,7 @@ use std::{
 
 use gtk::{
     prelude::WidgetExtManual,
-    traits::{GtkWindowExt, WidgetExt, IconThemeExt},
+    traits::{GtkWindowExt, IconThemeExt, WidgetExt},
     ApplicationWindow, IconLookupFlags,
 };
 
@@ -250,18 +250,18 @@ impl Overlay {
                     println!("Error on paint: {}", err.to_string());
                 }
             };
-            
-            if let Ok(image) = Pixbuf::from_file(icon) {
-                draw(image);
-            } else {
-                if let Some(icon_theme) = gtk::IconTheme::default() {
-                    if let Some(icon_info) = icon_theme.lookup_icon(icon, 48, IconLookupFlags::empty()) {
-                        if let Ok(image) = icon_info.load_icon() {
-                            draw(image);
-                        }
+
+            if let Some(icon_theme) = gtk::IconTheme::default() {
+                if let Some(icon_info) = icon_theme.lookup_icon(icon, 48, IconLookupFlags::empty())
+                {
+                    if let Ok(image) = icon_info.load_icon() {
+                        draw(image);
                     }
                 }
-                
+            } else {
+                if let Ok(image) = Pixbuf::from_file(icon) {
+                    draw(image);
+                }
             }
         }
     }
