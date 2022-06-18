@@ -17,3 +17,5 @@
 ```
 
 ### Screenshots:
+![First Screenshot](./screenshots/screenshot1.png)
+![Second Screenshot](./screenshots/screenshot2.png)
